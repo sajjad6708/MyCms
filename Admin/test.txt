@@ -1,0 +1,292 @@
+<?php foreach ($writer as $writter) {
+                      if( $post['writter']=$writter['id'])
+                      {
+                          echo $writter['name'];
+                      }
+                    }   ?>
+
+
+
+
+
+                    <?php foreach ($writter as $my_writer) {
+                        if($upost['writter'] == $my_writer['id'])
+                        {
+                            echo $my_writer['name'];
+                        }
+
+                       
+                    }   ?>
+
+
+
+
+
+                     <div class="col-12 col-lg-4">
+                    <div class="post-item">
+                        <a href="" class="item-hover-btn"><img src="image/post1.png" alt="" width="100%">
+                            <div class="hovershow">
+                                <div class="hover-image-post d-none d-lg-flex">
+                                </div>
+                                <a href="" class="more-opst btn d-none d-lg-flex">مشاهده ی مقاله</a>
+                            </div>
+                        </a>
+
+                        <div class="post-caption">
+                            <p><a href="">نکاتی برای فریلنسر شدن به عنوان برنامه‌نویس</a></p>
+                            <span>در همه جای دنیا به برنامه نویسان نیاز دارند. برای برنامه ‌نویسان با توجه به ‌نویسان با
+                                توجه به مهارت‌های
+                                کد و
+                            </span>
+                            <br><br>
+                            <span class="seen-post">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                    <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                </svg>۱۳۵
+                            </span>
+
+                            <span class="seen-post post-comment">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                </svg>۷
+                            </span>
+
+                            <span class="float-left post-m">
+                                <a href="">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    </svg> ایمان مدائنی
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                  <?php echo limit_words($posts['content'], 4 ); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  include_once "auth.php";
+
+ if (isset($_GET['logout'])){
+     logout();
+ }
+
+    if (islogin()) {
+        header("location:../index.php");
+
+ echo "<a href='?logout=1'> خروج</a>";
+
+    } elseif (isset($_POST['username']) & isset($_POST['password'])) {
+        $result_login = dologin($_POST['username'], $_POST['password']);
+
+        if ($result_login == true) {
+            header("location:login.php");
+        } 
+        else
+        {
+            echo " رمز عبور یا نام کاربردی اشتباه است";
+            echo "<a href='login.php'> تلاش دوباره</a>";  
+        }
+    }
+    else
+    {
+
+
+
+================== menu==
+
+    <!-- 
+                                <div class="col-5">
+                                    <form action="menu.php" method="POST">
+                                        عنوان :<input type="text" class="form-control" name="title">
+                                        اولویت بدی:<input class="form-control" type="text" name="sort">
+                                        وضعیت: <div class="form-check " style="padding-right: 10;">
+                                            <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                فعال
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="0">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                غیرفعال
+                                            </label>
+                                        </div>
+                                        <input type="submit" value="ثبت" name="sub">
+
+                                    </form>
+
+                                    <!-- =====show-menu==== -->
+                                    <div class="container">
+                                        <div class="row">
+                                        
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">عنوان</th>
+                                                        <th scope="col">اولویت</th>
+                                                        <th scope="col">وضعیت</th>
+                                                        <th scope="col">عملیات</th>
+                                                    </tr>
+                                                </thead>
+                                                <?php
+                                                $num = 1;
+                                                while ($row = $result->fetch()) {
+                                                    echo "<tbody>";
+                                                    echo "<tr>";
+                                                    echo "<th scope='row'>" . $num++ . "</th>";
+                                                    echo "<td>" . $row['title'] . "</td>";
+                                                    echo "<td>" . $row['sort'] . "</td>";
+                                                    echo "<td>" . $row['status'] . "</td>";
+                                                    echo "<td> <a href='#'><div class='btn btn-danger' </a>حذف</td>";
+                                                    echo "<td> <a href='#'><div class='btn btn-warning' </a>ویرایش</td>";
+                                                    echo "</tr>";
+
+                                                    echo "</tbody>";
+                                                }
+                                                ?>
+
+
+
+
+
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            ===============writter====
+
+                                 <form action="comment.php" method="POST">
+                                    نام و نام خانوادگی :<input type="text" class="form-control" name="name">
+                                    <input type="submit" name="sub">
+                                </form>
+                            </div>
+
+
+                            ========blog====
+
+                                <div class="col-5">
+                                        <form action="blog.php" method="POST">
+                                            عنوان :<input type="text" class="form-control" name="title">
+                                            تصویر:<input class="form-control" type="text" name="image">
+                                            <br>
+                                            <textarea placeholder="پیام خود را وارد کنید" name="content" id="editor1" class="form-control"></textarea>
+                                            <script>
+                                                CKEDITOR.replace('editor1');
+                                            </script><br>
+                                            برچسب ها :<input type="text" class="form-control" name="tag">
+                                            <br>
+                                            نویسنده:
+                                            <select name="writter" class="form-control">
+
+                                                <?php
+                                                while ($writter = $result->fetch()) { ?>
+                                                    <option value="<?php echo $writter['name']; ?>"> <?php echo $writter['name']; ?></option>
+
+                                                <?php } ?>
+
+
+                                            </select>
+                                            <input type="submit" value="ثبت" name="sub">
+                                            <br><br><br><br><br><br><br>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+
+                                                         <div class="row">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">عنوان</th>
+                                                <th scope="col">تصویر </th>
+                                                <th scope="col">نویسنده</th>
+                                                <th scope="col">تاریخ</th>
+                                                <th scope="col">عملیات</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        $num = 1;
+
+
+                                        while ($upost = $post->fetch()) {
+                                            echo "<tbody>";
+                                            echo "<tr>";
+                                            echo "<th scope='row'>" . $num++ . "</th>";
+                                            echo "<td>" . $upost['title'] . "</td>";
+                                            echo "<td><img style='height: 150px;
+                                                    ' src=" . $upost['image'] . " </td>";     ?>
+
+                                            <td> <?php
+                                                    echo $upost['writter'];
+                                                    ?> </td>
+
+                                            <td><?php echo jdate('y/m/d', time())  ?></td>
+
+
+
+                                        <?php
+                                        }
+                                        ?>
+                                    </table>
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+                                   <select name="writter" class="form-control"> -->
+
+                        <?php
+
+                        foreach ($writters as $writer) : ?>
+                            <option value="<?php echo $writer['id']; ?>" <?php echo $writer['name'];
+                                                                            if ($row['writter'] == $writer['id']) { ?> selected <?php } ?>></option>
+
+                        <?php endforeach; ?>
+
+
+                    </select>
+
+
+
+
+
+
+                       $r = "SELECT * from writter ";
+                                                $result = $db->query($r);
+
+                                                while ($writter = $result->fetch()) { ?>
+                                                    <option value="<?php echo $writter['name'] ?>" <?php if($row['writter']==$writter['name']){  ?> selected <?php ;} ?>><?php $row['writter'] ?></option>
+
+                                                <?php } ?>
